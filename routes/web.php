@@ -20,10 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//insert data into database
 Route::get('/insert', function(){
     $user = User::findOrFail(1);
     $address = new Address(['address'=> 'L.I.C colony, Bahadurpur.']);
 
     $user->address()->save($address);
 
+});
+
+//updating data
+Route::get('/update', function (){
+    $address = Address::where('user_id', 1)->first();
+    $address->address = "Updated New Address: Updated Colony";
+    $address->save();
 });
