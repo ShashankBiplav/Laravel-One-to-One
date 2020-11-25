@@ -35,3 +35,16 @@ Route::get('/update', function (){
     $address->address = "Updated New Address: Updated Colony";
     $address->save();
 });
+
+//reading data
+Route::get('/read/delete', function (){
+    $user = User::findOrFail(1);
+    echo $user->address->address;
+});
+
+//deleting data
+Route::get('/delete', function (){
+    $user = User::findOrFail(1);
+    $user->address()->delete();
+    return "deleted successfully🤣";
+});
